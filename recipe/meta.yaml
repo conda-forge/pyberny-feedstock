@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyberny-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyberny-{{ version }}.tar.gz
   sha256: b4bd9d3d2d58261e8f1d91b8204cc563617044d4b9daf6aae8feee31893cb336
 
 build:
@@ -14,16 +14,16 @@ build:
     - berny = berny.cli:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.5
+    - python {{ python_min }}
     - poetry-core >=1.0.0
     - poetry-dynamic-versioning >=0.12.3
     - pip
   run:
-    - python >=3.5.0
+    - python >={{ python_min }}
     - numpy >=1.15.0,<2.0.0
 
 test:
@@ -34,6 +34,7 @@ test:
     - berny --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jhrmnn/pyberny
