@@ -16,7 +16,7 @@ build:
     - berny = berny.cli:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 2
+  number: 3
 
 requirements:
   host:
@@ -27,7 +27,7 @@ requirements:
   run:
     - python >={{ python_min }}
     - numpy >=1.15.0,<3.0.0
-    - setuptools >=39
+    - setuptools >=39,<81
 
 test:
   imports:
